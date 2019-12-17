@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @NacosPropertySource(dataId = "user",groupId = "nacos_user",autoRefreshed = true)
 @EnableDiscoveryClient
 @EnableSwagger2
-@MapperScan("com.hd.user.dao")
+@MapperScan("com.hd.user.mapper")
 public class UserApplication {
 
 	public static void main(String[] args) {
