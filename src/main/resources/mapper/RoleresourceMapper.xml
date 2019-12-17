@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hd.user.mapper.RoleresourceMapper">
+  <resultMap id="BaseResultMap" type="com.hd.user.domain.Roleresource">
+    <id column="roleResourceId" jdbcType="INTEGER" property="roleresourceid" />
+    <result column="roleId" jdbcType="INTEGER" property="roleid" />
+    <result column="resourceId" jdbcType="INTEGER" property="resourceid" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="refreshTime" jdbcType="TIMESTAMP" property="refreshtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    roleResourceId, roleId, resourceId, `state`, createTime, refreshTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from roleresource
+    where roleResourceId = #{roleresourceid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from roleresource
+    where roleResourceId = #{roleresourceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="roleResourceId" keyProperty="roleresourceid" parameterType="com.hd.user.domain.Roleresource" useGeneratedKeys="true">
+    insert into roleresource (roleId, resourceId, `state`, 
+      createTime, refreshTime)
+    values (#{roleid,jdbcType=INTEGER}, #{resourceid,jdbcType=INTEGER}, #{state,jdbcType=CHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{refreshtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="roleResourceId" keyProperty="roleresourceid" parameterType="com.hd.user.domain.Roleresource" useGeneratedKeys="true">
+    insert into roleresource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        roleId,
+      </if>
+      <if test="resourceid != null">
+        resourceId,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="refreshtime != null">
+        refreshTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="resourceid != null">
+        #{resourceid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refreshtime != null">
+        #{refreshtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hd.user.domain.Roleresource">
+    update roleresource
+    <set>
+      <if test="roleid != null">
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="resourceid != null">
+        resourceId = #{resourceid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refreshtime != null">
+        refreshTime = #{refreshtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where roleResourceId = #{roleresourceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hd.user.domain.Roleresource">
+    update roleresource
+    set roleId = #{roleid,jdbcType=INTEGER},
+      resourceId = #{resourceid,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=CHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      refreshTime = #{refreshtime,jdbcType=TIMESTAMP}
+    where roleResourceId = #{roleresourceid,jdbcType=INTEGER}
+  </update>
+</mapper>
